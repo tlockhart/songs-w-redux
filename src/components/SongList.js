@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 // import create action
 import { selectSong } from '../actions';
 
-class SongList extends Component {
-    renderList() {
+// class SongList extends Component {
+const SongList = (props) => {
+     const renderList = () => {
         // return jsx elements from the songs array
-        return this.props.songs.map((song) => {
+        return props.songs.map((song) => {
             //Return the array from the renderList element
             return (
                 <div className="item" key={song.title}>
@@ -15,7 +16,7 @@ class SongList extends Component {
                         {/*Call the actionCreator selectSong passed in from connect*/}
                         <button 
                             className="ui button primary"
-                            onClick={()=>{this.props.selectSong(song)}}
+                            onClick={()=>{props.selectSong(song)}}
                         >
                             Select
                         </button>
@@ -25,22 +26,22 @@ class SongList extends Component {
             );
         });
     }
-    render() {
+    // render() {
         /* exporting the connect helper below, makes all state and action creators,
             passed in, available in the components render method, thru props. */
         // console.log(this.props);
         return (
             <div className="ui divided list">
-                {this.renderList()}
+                {renderList()}
             </div>);
-    }
+    // }
 }
 
 // Each time the state changes the mapStateToProps
 //  runs.  It converts state to props
 const mapStateToProps = (state) => {
     // console.log(state);
-    //change the state to a prop, we can access via this.props.songs inside of our components
+    //change the state to a prop, we can access via props.songs inside of our components
     return { 
         songs: state.songs,
         // favoriteTitle: state.favoriteTitle
